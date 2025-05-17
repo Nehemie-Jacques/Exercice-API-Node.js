@@ -1,4 +1,4 @@
-/* class rectangle {
+/*class rectangle {
   constructor(name, width, height ) {
     this.name = "rectangle";
     this.width = width;
@@ -12,7 +12,6 @@
 
   }
 }
-
 
 const rect = new rectangle(10, 20);
 console.log(rect.calculAra()); */
@@ -47,5 +46,6 @@ class voiture {
 
 const car =  new voiture("car", "Toyota", "Corolla", 2020, "red", 60);
 console.log(car.start())
+console.log(car.stop())
 
 class outils extends voiture {}

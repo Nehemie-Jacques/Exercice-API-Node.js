@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
+import os from "os";
 
 const jsonpath = path.resolve("database/data.json");
 const csvpath = path.resolve("database/data.csv");
@@ -91,6 +92,53 @@ const contactController = {
                     res.status(200).json("Contact mis à jour avec succès");
                 });
             });
+        });
+    },
+
+    deleteContact: (req, res) => {
+        const id = req.params.id;
+
+        fs.readFile(jsonpath, "utf-8", (err, data) => {
+            if (err) return res.status(500).json("Erreur de lecture du fichier");
+            const contacts = data ? JSON.parse(data) : [];
+            const filtercontact = contacts.filter((c) => c.id !== id);
+
+            if (filtercontact.length === contacts.length) {
+                return res.status(404).json("Contact non trouvé");
+            }
+            
+            fs.writeFile(jsonpath, JSON.stringify(filtercontact), "utf-8", (err) => {
+                if (err) return res.status(500).send("Erreur écriture JSON");
+
+                let csv = "id,nom,email,phone\n";
+                filtercontact.forEach((contact) => {
+                    csv += `${contact.id},${contact.nom},${contact.email},${contact.phone}\n`;
+                });
+
+                fs.writeFile(csvpath, csv, "utf-8", (err) => {
+                    if (err) console.log("Erreur écriture csv");
+                    res.send("Contact supprimé avec succès");
+                });
+            });
+        });
+    },
+
+    getStatus: (req, res) => {
+        fs.readFile(jsonpath, "utf-8", (err, data) => {
+            if (err) return res.status(500).json("Erreur de lecture du fichier");
+            const contacts = data ? JSON.parse(data) : [];
+            const status = {
+                plateforme: os.platform(),
+                architecture: os.arch(),
+                totalContacts: contacts.length,
+                memoireLibre: os.freemem(),
+                memoireUtilisee: os.totalmem() - os.freemem(),
+                memoireTotale: os.totalmem(),
+                cpus: os.cpus(),
+                hostname: os.hostname(),
+            }
+
+            res.status(200).json(status);
         });
     }
 }

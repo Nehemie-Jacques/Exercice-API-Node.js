@@ -4,5 +4,17 @@
     "nom": "Alice",
     "email": "alice@example.com",
     "phone": "690112233"
+  },
+  {
+    "id": "d29cdf23-88c3-48e8-a0c1-b7c342a5155b",
+    "nom": "Robert",
+    "email": "robert@example.com",
+    "phone": "697315239"
+  },
+  {
+    "id": "721301f9-5a0d-416d-bf68-330e27f84414",
+    "nom": "Julio",
+    "email": "julio@example.com",
+    "phone": "622681233"
   }
 ]

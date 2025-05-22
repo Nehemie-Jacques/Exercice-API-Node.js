@@ -1,13 +1,12 @@
 import { Router } from 'express';
-import taskController from '../controllers/controller.js';
+import taskController from '../controllers/taskController.js';
 
 const router = Router();
 
-router.post('/products', productController.createProduct);
-/* router.get('/products', productController.getAllProducts);
-router.get('/products/:id', productController.getProductById);
-router.put('/products/:id', productController.updateProduc);
-router.delete('/products/:id', productController.deleteProduct);
-router.get('/products/promos', productController.getProductsWithPromos); */
+router.post('/tasks', taskController.createTask);
+router.get('/tasks', taskController.getAllTasks);
+router.get('/tasks/:id', taskController.getTaskById);
+router.put('/tasks/:id', taskController.updateTask);
+router.delete('/tasks/:id', taskController.deleteTask);
 
 export default router;

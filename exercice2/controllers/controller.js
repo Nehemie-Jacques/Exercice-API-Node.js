@@ -7,6 +7,7 @@ const jsonpath = path.resolve("database/data.json");
 const csvpath = path.resolve("database/data.csv");
 
 const contactController = {
+
     createContact: (req, res) => {
         const { nom, email, phone } = req.body;
         if (!nom || !email || !phone) {
@@ -14,6 +15,7 @@ const contactController = {
         }
 
         fs.readFile(jsonpath, "utf-8", (err, data) => {
+            
             if (err) return res.status(500).json("Erreur de lecture du fichier");
             const contacts = data ? JSON.parse(data) : [];
             const newContact = { id: randomUUID(), nom, email, phone };
@@ -38,6 +40,7 @@ const contactController = {
 
     getAllContacts: (req, res) => {
         fs.readFile(jsonpath, "utf-8", (err, data) => {
+
             if (err) return res.status(500).json("Erreur de lecture du fichier");
             const contacts = data ? JSON.parse(data) : [];
 
@@ -56,6 +59,7 @@ const contactController = {
     getContactById: (req, res) => {
         const id = req.params.id;
         fs.readFile(jsonpath, "utf-8", (err, data) => {
+
             if (err) return res.status(500).json("Erreur de lecture du fichier");
             const contacts = data ? JSON.parse(data) : [];
             const contact = contacts.find((c) => c.id === id);
@@ -69,6 +73,7 @@ const contactController = {
         const id = req.params.id;
 
         fs.readFile(jsonpath, "utf-8", (err, data) => {
+
             if (err) return res.status(500).json("Erreur de lecture du fichier");
             const contacts = data ? JSON.parse(data) : [];
             const contact = contacts.find((c) => c.id === id);
@@ -99,6 +104,7 @@ const contactController = {
         const id = req.params.id;
 
         fs.readFile(jsonpath, "utf-8", (err, data) => {
+            
             if (err) return res.status(500).json("Erreur de lecture du fichier");
             const contacts = data ? JSON.parse(data) : [];
             const filtercontact = contacts.filter((c) => c.id !== id);

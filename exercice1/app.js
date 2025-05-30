@@ -1,5 +1,5 @@
 import express from 'express';
-import bodyParser from 'body-parser';
+import bodyParser from 'body-parser'; // parser for post requests
 import routes from './routes/route.js';
 // import morgan from 'morgan';
 import 'dotenv/config'

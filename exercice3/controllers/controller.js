@@ -39,7 +39,7 @@ const eventController = {
             fs.writeFile(jsonpath, JSON.stringify(events), "utf-8", (err) => {
                 if (err)
                     return res
-                           .status(500)
+                        .status(500)
                         .json("Erreur lors de l'écriture du fichier JSON");
 
                 const csvline = `${newEvent.id},${newEvent.type},${newEvent.message},${newEvent.date}\n`;

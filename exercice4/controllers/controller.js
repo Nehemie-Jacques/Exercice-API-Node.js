@@ -109,7 +109,7 @@ const productController = {
         })
     },
 
-    getProductsWithPromos: (req, res) => {
+   /* getProductsWithPromos: (req, res) => {
         fs.readFile(jsonpath, "utf-8", (err, data) => {
             if (err) return res.status(500).json("Error reading JSON file");
             const products = data ? JSON.parse(data) : [];
@@ -138,8 +138,8 @@ const productController = {
             })
             res.status(200).json(productsWithPromo);
         });
-    }
-}
+    } */
+} 
 
 
 export default productController;
